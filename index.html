@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="./client/styles.css">
+  <script type="text/javascript" src="./client/common.js"></script>
+  <script type="text/javascript" src="./client/requestHandler.js"></script>
+  <script type="text/javascript" src="./client/progressBar.js"></script>
+  <script type="text/javascript" src="./client/tournamentManager.js"></script>
+  <script type="text/javascript" src="./client/tournament.js"></script>
+  <script type="text/javascript" src="./client/client.js"></script>
+
+  <title>Knockout Tournament</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Knockout Tournament</h1>
+    <!-- For tests to pass, the IDs of the elements below MUST NOT change. -->
+    <div class="form">
+      <input id="teamsPerMatch" placeholder="Teams per match" type="number" />
+      <input id="numberOfTeams" placeholder="Number of teams" type="number" />
+      <button id="start">Start</button>
+    </div>
+    <div class="result">
+      <span class="response" id="winner"></span>
+      <span class="response" id="status"></span>
+      <span class="response" id="progress"></span>
+      <span class="response" id="error"></span>
+    </div>
+  </div>
+</body>
+
+</html>
