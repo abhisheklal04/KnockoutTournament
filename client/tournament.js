@@ -21,10 +21,6 @@ var KnockoutApp = KnockoutApp || {};
 
                 let matchCount = 0;
 
-                if (this.progressBar) {
-                    this.progressBar.init();
-                }
-
                 // fetching initial matches and team data
                 let matches = await this.tournamentManager.getInitialMatches();
 
@@ -32,7 +28,15 @@ var KnockoutApp = KnockoutApp || {};
                 let round = 0;
                 let winner = "";
 
+                if (this.progressBar) {
+                    this.progressBar.init();
+                }
+
                 do {
+                    if (this.progressBar) {                        
+                        this.progressBar.setStatus(`${MESSAGES.WAIT} ${MESSAGES.ROUND} ${round}`);
+                    }
+                    
                     // getting current round winning scores and updating progress bar
                     // on completion of each match
                     winnerScores = await this.tournamentManager.getMatchWinnerScores(matches, round,

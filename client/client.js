@@ -11,10 +11,9 @@ var KnockoutApp = KnockoutApp || {};
         TEAMS_PER_MATCH: "teamsPerMatch",
         NUMBER_OF_TEAMS: "numberOfTeams",
         ERROR: "error",
-        STATUS: "status",
         START: "start",
         WINNER: "winner",
-        PROGRESS: "progress"
+        PROGRESSBAR: "progressBar"
     };
 
     let ELEMENT_ACTIONS = {
@@ -34,8 +33,7 @@ var KnockoutApp = KnockoutApp || {};
             this.startButtonElement = document.getElementById(ELEMENT_IDS.START);
             this.winnerElement = document.getElementById(ELEMENT_IDS.WINNER);
             this.errorElement = document.getElementById(ELEMENT_IDS.ERROR);
-            this.statusElement = document.getElementById(ELEMENT_IDS.STATUS);
-            this.progressElement = document.getElementById(ELEMENT_IDS.PROGRESS);
+            this.progressBarElement = document.getElementById(ELEMENT_IDS.PROGRESSBAR);
         }
 
         init() {
@@ -64,7 +62,7 @@ var KnockoutApp = KnockoutApp || {};
 
             if (isNaN(numberOfTeams)) {
                 throw new AppError(MESSAGES.INVALID_NO_OF_TEAMS);
-            }            
+            }
         }
 
         toggleStartButton(action) {
@@ -77,7 +75,7 @@ var KnockoutApp = KnockoutApp || {};
         }
 
         setWinner(winner) {
-            this.winnerElement.textContent = `WINNER : ${winner}`;
+            this.winnerElement.textContent = `${winner} ${MESSAGES.DECLARE_WINNER}`;
         }
 
         getTotalMatches() {
@@ -101,29 +99,25 @@ var KnockoutApp = KnockoutApp || {};
             try {
                 this.errorElement.textContent = MESSAGES.EMPTY;
                 this.winnerElement.textContent = MESSAGES.EMPTY;
-                this.progressElement.textContent = MESSAGES.EMPTY;
-                this.statusElement.textContent = MESSAGES.WAIT;
 
                 this.toggleStartButton(ELEMENT_ACTIONS.DISABLE);
                 this.validateInputs();
 
-                progressBar = new KnockoutApp.ProgressBar(this.progressElement, this.getTotalMatches());
+                progressBar = new KnockoutApp.ProgressBar(this.progressBarElement, this.getTotalMatches());
                 let tournamentManager = new KnockoutApp.TournamentManager(this.teamsPerMatchElement.value,
                     this.numberOfTeamsElement.value, KnockoutApp.RequestHandler);
                 let tournament = new KnockoutApp.Tournament(tournamentManager, progressBar);
 
                 let winner = await tournament.run();
 
-                this.statusElement.textContent = MESSAGES.EMPTY;
                 this.setWinner(winner);
                 this.toggleStartButton(ELEMENT_ACTIONS.ENABLE);
                 progressBar.remove();
             }
             catch (exception) {
-                this.errorElement.textContent = `Error :: ${exception.message}`;
+                this.errorElement.textContent = `${MESSAGES.ERROR_MSG} ${exception.message}`;
                 console.log(exception.stack);
-                this.progressElement.textContent = MESSAGES.EMPTY;
-                this.statusElement.textContent = MESSAGES.EMPTY;
+                
                 this.toggleStartButton(ELEMENT_ACTIONS.ENABLE);
                 progressBar.remove();
             }

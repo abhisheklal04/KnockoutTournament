@@ -16,8 +16,10 @@ var KnockoutApp = KnockoutApp || {};
         INVALID_TEAMS_PER_MATCH: 'Oops, you forgot to give me the teams per match',
         INVALID_TEAMS_PER_MATCH_RANGE: 'Can\'t run a tournament with 1 or fewer teams per match, and you tried with',
         INVALID_NO_OF_TEAMS: 'Oops, you forgot to give me the number of teams in the tournament',
-        INVALID_INTERGER_INPUT: 'Only Integer Inputs are allowed.'
-
+        INVALID_INTERGER_INPUT: 'Only Integer Inputs are allowed.',
+        DECLARE_WINNER : ' is the winner.',
+        ERROR_MSG : 'Error :: ',
+        ROUND: ' Round '
     };
 
     KnockoutApp.CommonFunctions = {};

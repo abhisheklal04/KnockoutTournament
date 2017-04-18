@@ -55,11 +55,18 @@ button:focus {
     color: #5e0f68;
 }
 
-#progress {
+#progressBar span {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+#progressBar .progress {
     background-color: #ccc;
 }
 
-#status {
+#progressBar .status {
     color:burlywood;
 }
 
