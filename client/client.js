@@ -75,7 +75,7 @@ var KnockoutApp = KnockoutApp || {};
         }
 
         setWinner(winner) {
-            this.winnerElement.textContent = `${winner} ${MESSAGES.DECLARE_WINNER}`;
+            this.winnerElement.textContent = `${winner}`;
         }
 
         getTotalMatches() {
